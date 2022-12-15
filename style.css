@@ -1,5 +1,27 @@
+body {
+  background-color: #243447;
+}
+.container {
+  background: linear-gradient(90deg, #40CFFF 26%, #FFFFFF 35%, #FFFFFF 45%, #F6F55F 49%, #F6F55F 51%, #FFFFFF 54%, #FFFFFF 66%, #40CFFF 74%);
+  padding-left: 0px;
+  padding-right: 0px;
+}
+thead {
+  background-color: #243447;
+  color:white;
+}
+/*I hope that using !important here doesn't bother you.
+  I've been told that using it is a bad practice,
+  but the default margin-bottom from the table was bothering me xD*/
+table {
+  margin-bottom: 0rem !important;
+}
 td {
   border: 1px solid rgb(63, 41, 161);
+}
+button:hover{
+  background: rgb(64,207,255);
+  background: linear-gradient(180deg, rgba(64,207,255,1) 15%, rgba(255,255,255,1) 21%, rgba(255,255,255,1) 31%, rgba(246,245,95,1) 46%, rgba(246,245,95,1) 52%, rgba(255,255,255,1) 66%, rgba(255,255,255,1) 78%, rgba(64,207,255,1) 84%);
 }
 img {
   border-radius: 50%;
@@ -9,3 +31,4 @@ img {
 img:hover {
 box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+/*  */
