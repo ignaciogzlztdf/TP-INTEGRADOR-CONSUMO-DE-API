@@ -4,7 +4,7 @@ async function getAndShowData(){
   console.log(DATA);
   // a loop that inserts the data of every employee in the table
   DATA.forEach(element => {
-    document.getElementById('table').innerHTML+=`
+    document.getElementById('data').innerHTML+=`
       <tr>
         <td>${element.nombre} ${element.apellido}</td>
         <td>${element.area}</td>
@@ -53,4 +53,22 @@ async function seeEmployee(id){
   employeeSection.appendChild(address);
 }
 
+async function modifyData() {
+  const MY_DATA = {
+    "nombre":"Ignacio",
+    "apellido":"González",
+    "area":"Programmer",
+    "domicilio":"123 Ushuaia, Tierra del Fuego",
+    "foto":"https://i.pinimg.com/236x/55/f1/52/55f152d495ed47303e87d52196757d7d.jpg",
+    "id":"99"
+  }
+  const RESPONSE = await fetch("https://6398b453fe03352a94dbe15d.mockapi.io/api/empleados/"+MY_DATA.id, {
+    method: "PUT",
+    body:JSON.stringify(MY_DATA),
+    headers:{"Content-type":"application/json"}
+  });
+  const DATA = await RESPONSE.json();
+  console.log(DATA);
+}
 getAndShowData();
+modifyData()
