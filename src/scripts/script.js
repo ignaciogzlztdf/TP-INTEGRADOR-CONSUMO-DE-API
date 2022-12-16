@@ -12,11 +12,12 @@ async function getAndShowData(){
         <td><button class="btn-employee-see" id="${element.id}">See Employee</button></td>
       </tr>
       `});
-  // buttons
+  // buttons to see employee
   let btns = document.querySelectorAll(".btn-employee-see");
   btns.forEach(item => {
   item.addEventListener('click', (e) => {
       seeEmployee(e.target.id);
+      document.getElementById('bottom-page').scrollIntoView();
   });
   });
 }
@@ -25,6 +26,19 @@ async function seeEmployee(id){
   const RESPONSE = await fetch("https://6398b453fe03352a94dbe15d.mockapi.io/api/empleados/"+id);
   const EMPLOYEE_DATA = await RESPONSE.json();
   console.log(EMPLOYEE_DATA);
+
+  // the clear button is created
+  let containerBtnClear = document.getElementById("container-btn-clear");
+  containerBtnClear.innerHTML = `<button id="btn-clear">Clear</button>`;
+
+  // button to clear employee detailed view
+  let btnClear = document.getElementById("btn-clear");
+  btnClear.addEventListener("click", () => {
+  let employeeSection = document.getElementById("employee-section");
+  employeeSection.innerHTML = "";
+  employeeSection.classList.remove("employee-view");
+  containerBtnClear.innerHTML = "";
+  });
 
   let employeeSection = document.getElementById("employee-section");
 
@@ -35,11 +49,13 @@ async function seeEmployee(id){
   // just one at a time
   employeeSection.innerHTML = "";
 
+  employeeSection.classList.add("employee-view");
+
   let fullName = document.createElement("h4");
   fullName.innerHTML = `${EMPLOYEE_DATA.nombre} ${EMPLOYEE_DATA.apellido}`;
 
   let photo = document.createElement("div");
-  photo.innerHTML = `<img src="${EMPLOYEE_DATA.foto}"></img>`;
+  photo.innerHTML = `<img alt="The photo of an employee" src="${EMPLOYEE_DATA.foto}"></img>`;
 
   let area = document.createElement("h4");
   area.innerHTML = EMPLOYEE_DATA.area;
@@ -70,5 +86,12 @@ async function modifyData() {
   const DATA = await RESPONSE.json();
   console.log(DATA);
 }
+// button to go to top of the page
+let btnToTop = document.getElementById("bottom-page");
+btnToTop.addEventListener("click", () => {
+  document.getElementById('top-page').scrollIntoView();
+});
+
+// I call the functions
 getAndShowData();
-modifyData()
+modifyData();
